@@ -1,0 +1,2 @@
+module RijulHelper
+end
