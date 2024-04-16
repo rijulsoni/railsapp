@@ -18,8 +18,12 @@
     <td><%=post.id %></td>
     <td><%=post.title %></td>
     <td><%=post.description %></td>
-    <td>hai</td>
+    <td><%= link_to "edit", edit_post_path(post.id) %></td>
+    <td><%= link_to "view detail", post_path(post.id) %></td>
+     <td><%= link_to "delete", post_path(post), method: :delete, remote: true, data: { turbo_confirm: "Are you sure?", turbo_method: :delete } %></td>
   </tr>
   <% end %>
   </tbody>
+
 </table>
+<%= link_to "new Page", new_post_path %>

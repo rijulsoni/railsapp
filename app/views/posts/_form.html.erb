@@ -1,0 +1,16 @@
+<%= form_with model: post do |f| %> <p>
+    <%= f.label :title %> :
+    <%= f.text_field :title %>
+  </p>
+
+  <br>
+  <br>
+
+  <p>
+    <%= f.label :description %> :
+    <%= f.text_area :description %>
+  </p>
+
+  <%= f.submit%>
+  <%= link_to "back hoja", posts_path %>>
+<% end %>

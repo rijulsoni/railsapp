@@ -4,23 +4,39 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find(params[:id])
-    puts @post
+    @post = Post.find(params[:id]) # This line seems to be for debugging purposes, you may remove it if not needed
   end
 
   def new
+    @post = Post.new
   end
 
+
   def create
-    @post = Post.new(post_params)
-    respond_to do |format|
-      if @post.save
-        format.html { redirect_to title_url(@post), notice: "Title was successfully created." }
-        format.json { render :show, status: :created, location: @post }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
-      end
+    @post = Post.create(post_params)
+
+    if @post.save
+      redirect_to posts_path() # Redirect to the newly created post's show page
+    else
+      render :new # Render the new template again if there are validation errors
+    end
+  end
+  def edit
+    @post = Post.find(params[:id])
+  end
+  def update
+    @post = Post.find(params[:id])
+    if @post.update(post_params)
+      redirect_to posts_path() # Redirect to the newly created post's show page
+    else
+      render :edit # Render the new template again if there are validation errors
+    end
+  end
+
+  def destroy
+    @post = Post.find(params[:id])
+    if @post.destroy
+      redirect_to posts_path()
     end
   end
 
